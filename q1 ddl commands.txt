@@ -1,0 +1,94 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database student;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use student;
+Database changed
+mysql> create table student
+    -> (std_id int(5),
+    -> std_name char(20),
+    -> Gender char(5),
+    -> phone int(15),
+    -> DOB date,
+    -> Department char(20));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| std_id     | int(5)   | YES  |     | NULL    |       |
+| std_name   | char(20) | YES  |     | NULL    |       |
+| Gender     | char(5)  | YES  |     | NULL    |       |
+| phone      | int(15)  | YES  |     | NULL    |       |
+| DOB        | date     | YES  |     | NULL    |       |
+| Department | char(20) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.08 sec)
+
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| std_id     | int(5)   | YES  |     | NULL    |       |
+| std_name   | char(20) | YES  |     | NULL    |       |
+| Gender     | char(5)  | YES  |     | NULL    |       |
+| phone      | int(15)  | YES  |     | NULL    |       |
+| DOB        | date     | YES  |     | NULL    |       |
+| Department | char(20) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+6 rows in set (0.07 sec)
+
+mysql> ALTER TABLE student
+    -> ADD COLUMN year int(5);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| std_id     | int(5)   | YES  |     | NULL    |       |
+| std_name   | char(20) | YES  |     | NULL    |       |
+| Gender     | char(5)  | YES  |     | NULL    |       |
+| phone      | int(15)  | YES  |     | NULL    |       |
+| DOB        | date     | YES  |     | NULL    |       |
+| Department | char(20) | YES  |     | NULL    |       |
+| year       | int(5)   | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+7 rows in set (0.06 sec)
+
+mysql> ALTER TABLE student
+    -> DROP COLUMN Department;
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student
+    -> desc student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc student' at line 2
+mysql> desc student;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| std_id   | int(5)   | YES  |     | NULL    |       |
+| std_name | char(20) | YES  |     | NULL    |       |
+| Gender   | char(5)  | YES  |     | NULL    |       |
+| phone    | int(15)  | YES  |     | NULL    |       |
+| DOB      | date     | YES  |     | NULL    |       |
+| year     | int(5)   | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+6 rows in set (0.08 sec)
+
+mysql>
