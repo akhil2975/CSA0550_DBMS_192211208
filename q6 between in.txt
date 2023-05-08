@@ -1,0 +1,99 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 33
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use student;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| mentees           |
+| student           |
+| studentdpt        |
+| studentinfo       |
+| studepartment     |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> select*from mentees;
++--------+---------+------+---------+-------+
+| regno  | name    | dpt  | address | marks |
++--------+---------+------+---------+-------+
+| 434356 | arjun   | cse  | guntur  |    95 |
+| 236780 | venkat  | EEE  | ongole  |    98 |
+| 623551 | karthik | cse  | vizag   |    96 |
++--------+---------+------+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table add subject varchar(20);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add subject varchar(20)' at line 1
+mysql> alter table mentees add subject varchar(20);
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> update mentees set subject="DBMS" where regno=434356;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="PDSD" where dpt="EEE";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update mentees set subject="python" where address="vizag";
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from mentees;
++--------+---------+------+---------+-------+---------+
+| regno  | name    | dpt  | address | marks | subject |
++--------+---------+------+---------+-------+---------+
+| 434356 | arjun   | cse  | guntur  |    95 | DBMS    |
+| 236780 | venkat  | EEE  | ongole  |    98 | PDSD    |
+| 623551 | karthik | cse  | vizag   |    96 | python  |
++--------+---------+------+---------+-------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select*from mentees where marks between 90 and 96;
++--------+---------+------+---------+-------+---------+
+| regno  | name    | dpt  | address | marks | subject |
++--------+---------+------+---------+-------+---------+
+| 434356 | arjun   | cse  | guntur  |    95 | DBMS    |
+| 623551 | karthik | cse  | vizag   |    96 | python  |
++--------+---------+------+---------+-------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select*from mentees where subject in("PDSD");
++--------+--------+------+---------+-------+---------+
+| regno  | name   | dpt  | address | marks | subject |
++--------+--------+------+---------+-------+---------+
+| 236780 | venkat | EEE  | ongole  |    98 | PDSD    |
++--------+--------+------+---------+-------+---------+
+1 row in set (0.00 sec)
+
+mysql> select sum(marks) from mentees where dpt="cse";
++------------+
+| sum(marks) |
++------------+
+|        191 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(marks) as average from mentees;
++---------+
+| average |
++---------+
+| 96.3333 |
++---------+
+1 row in set (0.00 sec)
+
+mysql>
